@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id       String    @id @default(uuid())
+  name     String
+  username String    @unique
+  password String
+  role     String    @default("USER") // ADMIN or USER
+  
+  // Relations
+  heldCameras Camera[] @relation("CurrentHolder")
+  actionLogs  ActionLog[]
+}
+
+model Camera {
+  id           String   @id @default(uuid())
+  name         String
+  serialNumber String   @unique
+  status       String   @default("AVAILABLE") // AVAILABLE or IN_USE
+  lastUpdate   DateTime @default(now())
+
+  // Relations
+  holderId     String?
+  holder       User?    @relation("CurrentHolder", fields: [holderId], references: [id])
+}
+
+model ActionLog {
+  id        String   @id @default(uuid())
+  action    String   // PICKUP, RETURN, HANDOVER, STATUS_CHANGE
+  timestamp DateTime @default(now())
+  details   String?
+  
+  // Relations
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}
