@@ -12,6 +12,7 @@ export async function POST(request: NextRequest) {
                 name: body.name,
                 username: body.username,
                 password: hashedPassword,
+                role: body.role || 'USER',
             }
         });
 
