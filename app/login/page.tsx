@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function LoginPage() {
     const [username, setUsername] = useState('');
@@ -50,13 +51,13 @@ export default function LoginPage() {
                 {/* Logo Header */}
                 <div className="flex flex-col items-center mb-8">
                     <div className="relative w-20 h-20 mb-4">
-                        {/* Assuming Image from next/image is imported, if not I need to add import. 
-                    Wait, this replace block doesnt include imports. I should check if I need to update imports.
-                    The previous file content had imports at top. I am replacing lines 40-79 approx.
-                    I should verify imports first? No, I am replacing the RETURN statement primarily.
-                    But I need 'Image'. I better do a full file replace or check imports.
-                 */}
-                        <img src="/logo.png" alt="Click KGP" className="object-contain w-full h-full" />
+                        <Image
+                            src="/logo.png"
+                            alt="Click KGP"
+                            fill
+                            className="object-contain"
+                            priority
+                        />
                     </div>
                     <h1 className="text-3xl font-bold tracking-tight">
                         click<span className="text-kgp-yellow">KGP</span>
