@@ -3,16 +3,21 @@ import prisma from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
 
 export async function POST(request: NextRequest) {
-    const body = await request.json();
-    const hashedPassword = await bcrypt.hash(body.password, 10);
+    try {
+        const body = await request.json();
+        const hashedPassword = await bcrypt.hash(body.password, 10);
 
-    await prisma.user.create({
-        data: {
-            name: body.name,
-            username: body.username,
-            password: hashedPassword,
-        }
-    });
+        await prisma.user.create({
+            data: {
+                name: body.name,
+                username: body.username,
+                password: hashedPassword,
+            }
+        });
 
-    return NextResponse.json({ success: true });
+        return NextResponse.json({ success: true });
+    } catch (e: any) {
+        console.error("Create User Error:", e);
+        return NextResponse.json({ error: e.message || "Unknown Error" }, { status: 500 });
+    }
 }
