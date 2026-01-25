@@ -8,7 +8,7 @@ export async function middleware(request: NextRequest) {
     // Refresh session if exists
     await updateSession(request);
 
-    if (!session && !request.nextUrl.pathname.startsWith('/login') && !request.nextUrl.pathname.startsWith('/api')) {
+    if (!session && !request.nextUrl.pathname.startsWith('/login') && !request.nextUrl.pathname.startsWith('/api') && !request.nextUrl.pathname.startsWith('/setup')) {
         return NextResponse.redirect(new URL('/login', request.url));
     }
 
