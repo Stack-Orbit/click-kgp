@@ -62,20 +62,7 @@ export default function LoginPage() {
 
                 {/* Logo Header */}
                 <div className="flex flex-col items-center mb-8">
-                    <motion.div
-                        initial={{ scale: 0.8 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 200 }}
-                        className="relative w-24 h-24 mb-4"
-                    >
-                        <Image
-                            src="/app-logo.png"
-                            alt="Click KGP"
-                            width={120}
-                            height={120}
-                            className="object-contain"
-                            priority
-                            unoptimized
-                        />
-                    </motion.div>
+
                     <h1 className="text-3xl font-bold tracking-tight">
                         click<span className="text-kgp-yellow">KGP</span>
                     </h1>
