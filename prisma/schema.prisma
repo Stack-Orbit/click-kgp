@@ -12,14 +12,14 @@ datasource db {
 }
 
 model User {
-  id       String    @id @default(uuid())
+  id       String @id @default(uuid())
   name     String
-  username String    @unique
+  username String @unique
   password String
-  role     String    @default("USER") // ADMIN or USER
-  
+  role     String @default("USER") // ADMIN or USER
+
   // Relations
-  heldCameras Camera[] @relation("CurrentHolder")
+  heldCameras Camera[]    @relation("CurrentHolder")
   actionLogs  ActionLog[]
 }
 
@@ -31,17 +31,17 @@ model Camera {
   lastUpdate   DateTime @default(now())
 
   // Relations
-  holderId     String?
-  holder       User?    @relation("CurrentHolder", fields: [holderId], references: [id])
+  holderId String?
+  holder   User?   @relation("CurrentHolder", fields: [holderId], references: [id])
 }
 
 model ActionLog {
   id        String   @id @default(uuid())
-  action    String   // PICKUP, RETURN, HANDOVER, STATUS_CHANGE
+  action    String // PICKUP, RETURN, HANDOVER, STATUS_CHANGE
   timestamp DateTime @default(now())
   details   String?
-  
+
   // Relations
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
 }

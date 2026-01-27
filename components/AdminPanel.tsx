@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function AdminPanel() {
     const [name, setName] = useState('');
@@ -31,7 +32,12 @@ export default function AdminPanel() {
     };
 
     return (
-        <div className="p-6 bg-kgp-dark rounded-2xl border border-white/5 mt-8 relative overflow-hidden">
+        <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            className="p-6 bg-kgp-dark rounded-2xl border border-white/5 mt-8 relative overflow-hidden"
+        >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-kgp-yellow to-transparent opacity-20" />
             <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-2">
                 <span className="text-kgp-yellow">Admin</span> Control
@@ -57,6 +63,6 @@ export default function AdminPanel() {
                     </form>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
