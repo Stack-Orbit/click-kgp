@@ -67,7 +67,7 @@ export default function LoginPage() {
                         className="relative w-24 h-24 mb-4"
                     >
                         <Image
-                            src="/logo.png?v=2"
+                            src="/app-logo.png"
                             alt="Click KGP"
                             width={120}
                             height={120}
