@@ -67,12 +67,13 @@ export default function LoginPage() {
                         className="relative w-24 h-24 mb-4"
                     >
                         <Image
-                            src="/logo.png"
+                            src="/logo.png?v=2"
                             alt="Click KGP"
                             width={120}
                             height={120}
                             className="object-contain"
                             priority
+                            unoptimized
                         />
                     </motion.div>
                     <h1 className="text-3xl font-bold tracking-tight">
