@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+
 
 export default function Navbar({ user }: { user: any }) {
     const router = useRouter();
@@ -16,9 +16,7 @@ export default function Navbar({ user }: { user: any }) {
         <nav className="bg-kgp-black border-b border-gray-800 p-4 sticky top-0 z-50 backdrop-blur-md bg-opacity-80">
             <div className="container mx-auto flex justify-between items-center text-white">
                 <div className="flex items-center gap-3">
-                    <div className="relative w-10 h-10">
-                        <Image src="/logo.png" alt="Click KGP Logo" fill className="object-contain" />
-                    </div>
+
                     {/* Split text coloring as per logo style implies: Click (White) KGP (Yellow) */}
                     <div className="font-bold text-xl tracking-tight">
                         <span>click</span> <span className="text-kgp-yellow">KGP</span>

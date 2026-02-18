@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+
 import { motion } from 'framer-motion';
+
+import LoginAnimation from '@/components/LoginAnimation';
 
 export default function LoginPage() {
     const [username, setUsername] = useState('');
@@ -16,6 +18,9 @@ export default function LoginPage() {
         e.preventDefault();
         setLoading(true);
         setError('');
+
+        // Artificial delay of 1.55 seconds to improve user experience
+        await new Promise(resolve => setTimeout(resolve, 1550));
 
         try {
             const res = await fetch('/api/login', {
@@ -107,9 +112,9 @@ export default function LoginPage() {
                         whileTap={{ scale: 0.98 }}
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-kgp-yellow text-black font-bold py-3 px-4 rounded-lg hover:bg-yellow-400 transition-all shadow-lg shadow-yellow-900/20 disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+                        className="w-full bg-kgp-yellow text-black font-bold py-3 px-4 rounded-lg hover:bg-yellow-400 transition-all shadow-lg shadow-yellow-900/20 disabled:opacity-50 disabled:cursor-not-allowed mt-2 flex justify-center items-center h-[52px]"
                     >
-                        {loading ? 'Authenticating...' : 'Login'}
+                        {loading ? <LoginAnimation /> : 'Login'}
                     </motion.button>
                 </form>
             </motion.div>
