@@ -63,6 +63,35 @@ export default function AdminPanel() {
                     </form>
                 </div>
             </div>
+
+            {/* Maintenance Mode Toggle */}
+            <div className="mt-8 pt-8 border-t border-white/10">
+                <div className="flex items-center justify-between">
+                    <div>
+                        <h3 className="text-lg font-bold text-white">Maintenance Mode</h3>
+                        <p className="text-gray-500 text-sm">Pause the entire website for non-admin users.</p>
+                    </div>
+                    <button
+                        onClick={async () => {
+                            if (!confirm('Are you sure you want to toggle maintenance mode?')) return;
+                            try {
+                                const res = await fetch('/api/admin/maintenance', { method: 'POST' });
+                                if (res.ok) {
+                                    alert('Maintenance Mode Updated');
+                                    // Optional: Refresh state
+                                } else {
+                                    alert('Failed to update maintenance mode');
+                                }
+                            } catch (e) {
+                                alert('Error updating maintenance mode');
+                            }
+                        }}
+                        className="px-4 py-2 bg-red-500/20 text-red-500 border border-red-500/50 rounded-lg font-bold hover:bg-red-500/30 transition-all"
+                    >
+                        Toggle Status
+                    </button>
+                </div>
+            </div>
         </motion.div>
     );
 }

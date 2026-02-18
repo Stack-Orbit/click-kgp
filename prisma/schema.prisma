@@ -44,3 +44,8 @@ model ActionLog {
   userId String
   user   User   @relation(fields: [userId], references: [id])
 }
+
+model SystemSettings {
+  key   String @id
+  value String
+}
